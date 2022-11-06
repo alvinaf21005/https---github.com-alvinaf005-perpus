@@ -1,4 +1,6 @@
-import 'package:crudbuku/main.dart';
+import 'package:perpus/halamannavigasi/beranda.dart';
+import 'package:perpus/main.dart';
+import 'package:perpus/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -104,7 +106,7 @@ class _EditDataState extends State<EditData> {
               onPressed: () {
                 editData();
                 Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => new Home()));
+                    builder: (BuildContext context) => new BerandaPage()));
               },
             )
           ],

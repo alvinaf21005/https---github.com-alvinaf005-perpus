@@ -7,13 +7,13 @@ class AddData extends StatefulWidget {
 }
 
 class _AddDataState extends State<AddData> {
-  TextEditingController controllerID = new TextEditingController();
-  TextEditingController controllerJudul = new TextEditingController();
-  TextEditingController controllerPengarang = new TextEditingController();
-  TextEditingController controllerPenerbit = new TextEditingController();
-  TextEditingController controllerTahun = new TextEditingController();
-  TextEditingController controllerTempat = new TextEditingController();
-  TextEditingController controllerRak = new TextEditingController();
+  TextEditingController controllerID = TextEditingController();
+  TextEditingController controllerJudul = TextEditingController();
+  TextEditingController controllerPengarang = TextEditingController();
+  TextEditingController controllerPenerbit = TextEditingController();
+  TextEditingController controllerTahun = TextEditingController();
+  TextEditingController controllerTempat = TextEditingController();
+  TextEditingController controllerRak = TextEditingController();
 
   void addData() {
     var url = Uri.parse('http://10.0.2.2/bukuperpus/adddata.php');
@@ -30,50 +30,48 @@ class _AddDataState extends State<AddData> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text("Tambah Buku")),
+    return Scaffold(
+      appBar: AppBar(title: Text("Tambah Buku")),
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: new ListView(
+        child: ListView(
           children: <Widget>[
-            new TextField(
+            TextField(
               controller: controllerID,
-              decoration:
-                  new InputDecoration(hintText: "Barcode", labelText: "ID"),
+              decoration: InputDecoration(hintText: "Barcode", labelText: "ID"),
             ),
-            new TextField(
+            TextField(
               controller: controllerJudul,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Judul Buku", labelText: "Judul Buku"),
             ),
-            new TextField(
+            TextField(
               controller: controllerPengarang,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Pengarang", labelText: "Pengarang"),
             ),
-            new TextField(
+            TextField(
               controller: controllerPenerbit,
-              decoration: new InputDecoration(
-                  hintText: "Penerbit", labelText: "Penerbit"),
+              decoration:
+                  InputDecoration(hintText: "Penerbit", labelText: "Penerbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerTahun,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Tahun Terbit", labelText: "Tahun Terbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerTempat,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Tempat Terbit", labelText: "Tempat Terbit"),
             ),
-            new TextField(
+            TextField(
               controller: controllerRak,
-              decoration:
-                  new InputDecoration(hintText: "Rak", labelText: "Rak"),
+              decoration: InputDecoration(hintText: "Rak", labelText: "Rak"),
             ),
-            new Padding(padding: const EdgeInsets.all(15)),
-            new RaisedButton(
-              child: new Text("ADD"),
+            Padding(padding: const EdgeInsets.all(15)),
+            RaisedButton(
+              child: Text("ADD"),
               color: Colors.green,
               onPressed: () {
                 addData();

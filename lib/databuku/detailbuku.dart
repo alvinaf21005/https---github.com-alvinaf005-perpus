@@ -1,43 +1,42 @@
-import 'package:crudbuku/main.dart';
+import 'package:perpus/halamannavigasi/beranda.dart';
 import 'package:flutter/material.dart';
 import 'editdata.dart';
 import 'package:http/http.dart' as http;
 
-class Detail extends StatefulWidget {
+class DetailBuku extends StatefulWidget {
   List list;
   int index;
-  Detail({required this.index, required this.list});
+  DetailBuku({required this.index, required this.list});
 
   @override
-  _DetailState createState() => new _DetailState();
+  _DetailBukuState createState() => _DetailBukuState();
 }
 
-class _DetailState extends State<Detail> {
+class _DetailBukuState extends State<DetailBuku> {
   void deleteData() {
     var url = Uri.parse('http://10.0.2.2/bukuperpus/deletedata.php');
     http.post(url, body: {'id': widget.list[widget.index]['id']});
   }
 
   void confirm() {
-    AlertDialog alertDialog = new AlertDialog(
-      content: new Text(
+    AlertDialog alertDialog = AlertDialog(
+      content: Text(
           "Apakah anda yakin ingin menghapus file '${widget.list[widget.index]['judul_buku']}'"),
       actions: <Widget>[
-        new RaisedButton(
-            child: new Text(
+        RaisedButton(
+            child: Text(
               "Hapus",
-              style: new TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.black),
             ),
             color: Color.fromARGB(255, 255, 0, 0),
             onPressed: () {
               deleteData();
-              Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new Home(),
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => BerandaPage(),
               ));
             }),
-        new RaisedButton(
-            child:
-                new Text("Kembali", style: new TextStyle(color: Colors.black)),
+        RaisedButton(
+            child: Text("Kembali", style: TextStyle(color: Colors.black)),
             color: Colors.green,
             onPressed: () => Navigator.pop(context))
       ],
@@ -47,62 +46,61 @@ class _DetailState extends State<Detail> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-          title: new Text('${widget.list[widget.index]['judul_buku']}')),
-      body: new Container(
+    return Scaffold(
+      appBar: AppBar(title: Text('${widget.list[widget.index]['judul_buku']}')),
+      body: Container(
         height: 270,
         padding: EdgeInsets.all(15),
-        child: new Card(
+        child: Card(
           child: Center(
-              child: new Column(
+              child: Column(
             children: <Widget>[
-              new Padding(padding: const EdgeInsets.only(top: 25)),
-              new Text(
+              Padding(padding: const EdgeInsets.only(top: 25)),
+              Text(
                 widget.list[widget.index]['judul_buku'],
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 widget.list[widget.index]['tahun_terbit'],
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 widget.list[widget.index]['tempat_terbit'],
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 "Barcode : ${widget.list[widget.index]['id']}",
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 "Pengarang : ${widget.list[widget.index]['pengarang']}",
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 "Penerbit : ${widget.list[widget.index]['penerbit']}",
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Text(
+              Text(
                 "Rak : ${widget.list[widget.index]['rak']}",
-                style: new TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               ),
-              new Padding(padding: const EdgeInsets.only(top: 25)),
-              new Row(
+              Padding(padding: const EdgeInsets.only(top: 25)),
+              Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  new RaisedButton(
-                    child: new Text("EDIT"),
+                  RaisedButton(
+                    child: Text("EDIT"),
                     color: Colors.lightBlueAccent,
                     onPressed: () =>
-                        Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (BuildContext context) => new EditData(
+                        Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => EditData(
                         list: widget.list,
                         index: widget.index,
                       ),
                     )),
                   ),
-                  new RaisedButton(
-                    child: new Text("DELETE"),
+                  RaisedButton(
+                    child: Text("DELETE"),
                     color: Colors.red,
                     onPressed: () => confirm(),
                   ),
